@@ -18,12 +18,27 @@ namespace SlidEnglish
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
+		public IConfiguration Configuration { get; }
+
+		private IHostingEnvironment CurrentEnvironment { get; }
+
+		private string ConnectionString
 		{
-			Configuration = configuration;
+			get
+			{
+				if (CurrentEnvironment.IsProduction())
+					return Environment.GetEnvironmentVariable("CONNECTION_STRING");
+
+				return Configuration.GetConnectionString(Environment.MachineName) ??
+					Configuration.GetConnectionString("DefaultConnection");
+			}
 		}
 
-		public IConfiguration Configuration { get; }
+		public Startup(IConfiguration configuration, IHostingEnvironment env)
+		{
+			Configuration = configuration;
+			CurrentEnvironment = env;
+		}
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
@@ -35,9 +50,12 @@ namespace SlidEnglish
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-			services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseSqlServer(
-					Configuration.GetConnectionString("DefaultConnection")));
+			services
+				.AddEntityFrameworkNpgsql()
+				.AddDbContext<ApplicationDbContext>(options => options
+					.UseLazyLoadingProxies()
+					.UseNpgsql(ConnectionString));
+					
 			services.AddDefaultIdentity<IdentityUser>()
 				.AddDefaultUI(UIFramework.Bootstrap4)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
