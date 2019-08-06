@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidEnglish", "SlidEnglish\SlidEnglish.csproj", "{08BEFEE7-4442-4E46-B9E5-CB253569ACCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08BEFEE7-4442-4E46-B9E5-CB253569ACCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BEFEE7-4442-4E46-B9E5-CB253569ACCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BEFEE7-4442-4E46-B9E5-CB253569ACCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BEFEE7-4442-4E46-B9E5-CB253569ACCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FF76FB1-9858-4DC8-9DD6-F19583AFEB7A}
+	EndGlobalSection
+EndGlobal
