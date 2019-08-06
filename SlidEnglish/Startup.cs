@@ -56,7 +56,7 @@ namespace SlidEnglish
 					.UseLazyLoadingProxies()
 					.UseNpgsql(ConnectionString));
 					
-			services.AddDefaultIdentity<IdentityUser>()
+			services.AddDefaultIdentity<SlidEnglish.Domain.User>()
 				.AddDefaultUI(UIFramework.Bootstrap4)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 

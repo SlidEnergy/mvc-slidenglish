@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SlidEnglish.Domain;
 
 namespace SlidEnglish.Data
 {
@@ -12,5 +13,6 @@ namespace SlidEnglish.Data
 			: base(options)
 		{
 		}
+		public DbSet<SlidEnglish.Domain.Word> Words { get; set; }
 	}
 }

@@ -9,5 +9,8 @@ namespace SlidEnglish.Domain
 
 		[Required]
 		public string Text { get; set; }
+
+		[Required]
+		public virtual User User { get; set; }
 	}
 }
