@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlidEnglish", "SlidEnglish\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidEnglish.Domain", "SlidEnglish.Domain\SlidEnglish.Domain.csproj", "{8EF744DB-C056-45C1-BD44-19DE886B0073}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlidEnglish.App", "C:\libs\SlidEnglish\SlidEnglish.App\SlidEnglish.App.csproj", "{F9EBF75E-0B37-4749-9EB5-D27475953BA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidEnglish.Infrastructure", "SlidEnglish.Infrastructure\SlidEnglish.Infrastructure.csproj", "{87C9EEE8-069B-47A2-A84A-404B61006BF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8EF744DB-C056-45C1-BD44-19DE886B0073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EF744DB-C056-45C1-BD44-19DE886B0073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EF744DB-C056-45C1-BD44-19DE886B0073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EBF75E-0B37-4749-9EB5-D27475953BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EBF75E-0B37-4749-9EB5-D27475953BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EBF75E-0B37-4749-9EB5-D27475953BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EBF75E-0B37-4749-9EB5-D27475953BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87C9EEE8-069B-47A2-A84A-404B61006BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C9EEE8-069B-47A2-A84A-404B61006BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C9EEE8-069B-47A2-A84A-404B61006BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C9EEE8-069B-47A2-A84A-404B61006BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,7 +17,13 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\SlidEnglish.Domain\SlidEnglish.Domain.csproj" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\SlidEnglish.Infrastructure\SlidEnglish.Infrastructure.csproj" />
+    <ProjectReference Include="C:\libs\SlidEnglish\SlidEnglish.App\SlidEnglish.App.csproj" />
   </ItemGroup>
 
   <Target Name="PrePublishTarget" AfterTargets="Publish">
