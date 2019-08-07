@@ -16,8 +16,11 @@ namespace SlidEnglish.App
 
 		public async Task<Word> AddAsync(string userId, Word word)
 		{
-			var user = await _dal.Users.GetById(userId);
-			word.User = user;
+			if (word.User == null)
+			{
+				var user = await _dal.Users.GetById(userId);
+				word.User = user;
+			}
 
 			await _dal.Words.Add(word);
 

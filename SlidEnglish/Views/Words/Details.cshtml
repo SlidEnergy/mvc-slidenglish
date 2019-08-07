@@ -1,4 +1,4 @@
-﻿@model SlidEnglish.Domain.Word
+﻿@model WordViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -10,11 +10,23 @@
     <h4>Word</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Text)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Text)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Association)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Association)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
 </div>

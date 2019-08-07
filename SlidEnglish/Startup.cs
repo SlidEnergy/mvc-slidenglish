@@ -13,8 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SlidEnglish.Infrastructure;
+using AutoMapper;
 
-namespace SlidEnglish
+namespace SlidEnglish.Web
 {
 	public class Startup
 	{
@@ -61,6 +62,12 @@ namespace SlidEnglish
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+			// AutoMapper
+			services.AddScoped(provider => new MapperConfiguration(cfg =>
+			{
+				cfg.AddProfile(new MappingProfile(provider.GetService<ApplicationDbContext>()));
+			}).CreateMapper());
 
 			services.AddSlidEnglishServices();
 		}

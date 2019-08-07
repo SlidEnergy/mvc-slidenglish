@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,11 +15,12 @@ namespace SlidEnglish.Web
 	[Authorize]
     public class WordsController : Controller
     {
-        //private readonly ApplicationDbContext _context;
+		private readonly IMapper _mapper;
 		private readonly WordsService _service;
 
-		public WordsController(WordsService wordsService)
+		public WordsController(IMapper mapper, WordsService wordsService)
         {
+			_mapper = mapper;
 			_service = wordsService;
         }
 
@@ -26,7 +28,8 @@ namespace SlidEnglish.Web
         public async Task<IActionResult> Index()
         {
 			var userId = User.GetUserId();
-			return View(await _service.GetListAsync(userId));
+			var list = await _service.GetListAsync(userId);
+			return View(_mapper.Map<List<WordViewModel>>(list));
         }
 
 		// GET: Words/Details/5
@@ -46,7 +49,7 @@ namespace SlidEnglish.Web
 				return NotFound();
 			}
 
-			return View(word);
+			return View(_mapper.Map<WordViewModel>(word));
 		}
 
 		// GET: Words/Create
@@ -60,15 +63,15 @@ namespace SlidEnglish.Web
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Text")] WordBindingModel word)
+        public async Task<IActionResult> Create([Bind("Id,Text,Association,Description")] WordViewModel word)
         {
             if (ModelState.IsValid)
             {
 				var userId = User.GetUserId();
-				await _service.AddAsync(userId, new Word() { Text = word.Text });
+				await _service.AddAsync(userId, _mapper.Map<Word>(word));
                 return RedirectToAction(nameof(Index));
             }
-            return View(word);
+            return View(_mapper.Map<WordViewModel>(word));
         }
 
 		// GET: Words/Edit/5
@@ -84,7 +87,7 @@ namespace SlidEnglish.Web
 			if (word == null)
 				return NotFound();
 
-			return View(word);
+			return View(_mapper.Map<WordViewModel>(word));
 		}
 
 		// POST: Words/Edit/5
@@ -92,7 +95,7 @@ namespace SlidEnglish.Web
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Text")] WordBindingModel word)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Text,Association,Description")] WordViewModel word)
 		{
 			if (id != word.Id)
 				return NotFound();
@@ -103,11 +106,11 @@ namespace SlidEnglish.Web
 
 				try
 				{
-					await _service.EditAsync(userId, new Word { Id = word.Id, Text = word.Text });
+					await _service.EditAsync(userId, _mapper.Map<Word>(word));
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!await _service.ExistsAsync(userId, new Word { Id = word.Id, Text = word.Text }))
+					if (!await _service.ExistsAsync(userId, _mapper.Map<Word>(word)))
 					{
 						return NotFound();
 					}
@@ -118,7 +121,7 @@ namespace SlidEnglish.Web
 				}
 				return RedirectToAction(nameof(Index));
 			}
-			return View(word);
+			return View(_mapper.Map<WordViewModel>(word));
 		}
 
 		// GET: Words/Delete/5
@@ -133,7 +136,7 @@ namespace SlidEnglish.Web
 			if (word == null)
 				return NotFound();
 
-			return View(word);
+			return View(_mapper.Map<WordViewModel>(word));
 		}
 
 		// POST: Words/Delete/5

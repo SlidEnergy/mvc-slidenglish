@@ -4,9 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SlidEnglish.Models;
 
-namespace SlidEnglish.Controllers
+namespace SlidEnglish.Web
 {
 	public class HomeController : Controller
 	{

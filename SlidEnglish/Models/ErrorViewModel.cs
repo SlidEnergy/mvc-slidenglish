@@ -1,6 +1,6 @@
 using System;
 
-namespace SlidEnglish.Models
+namespace SlidEnglish.Web
 {
 	public class ErrorViewModel
 	{
