@@ -17,6 +17,12 @@ namespace SlidEnglish.Web
 					opt => opt.MapFrom(src => src.Description ?? ""));
 
 			CreateMap<Word, WordViewModel>();
+
+			CreateMap<Word, DetailsWordViewModel>()
+				.ForMember(dest => dest.Sinonyms,
+					opt => opt.MapFrom(src => src.AllSinonyms));
+
+			CreateMap<WordViewModel, Word>();
 		}
     }
 }

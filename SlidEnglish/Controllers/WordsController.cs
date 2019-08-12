@@ -49,7 +49,7 @@ namespace SlidEnglish.Web
 				return NotFound();
 			}
 
-			return View(_mapper.Map<WordViewModel>(word));
+			return View(_mapper.Map<DetailsWordViewModel>(word));
 		}
 
 		// GET: Words/Create
@@ -87,7 +87,11 @@ namespace SlidEnglish.Web
 			if (word == null)
 				return NotFound();
 
-			return View(_mapper.Map<WordViewModel>(word));
+			var editWord = _mapper.Map<DetailsWordViewModel>(word);
+			editWord.Sinonyms.Add(new WordViewModel() { Id = 1, Text = "Test1" });
+			editWord.Sinonyms.Add(new WordViewModel() { Id = 2, Text = "Test2" });
+			editWord.Sinonyms.Add(new WordViewModel() { Id = 3, Text = "Test3" });
+			return View(editWord);
 		}
 
 		// POST: Words/Edit/5
@@ -95,7 +99,7 @@ namespace SlidEnglish.Web
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Text,Association,Description")] WordViewModel word)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Text,Association,Description,Sinonyms")] DetailsWordViewModel word)
 		{
 			if (id != word.Id)
 				return NotFound();
@@ -121,7 +125,13 @@ namespace SlidEnglish.Web
 				}
 				return RedirectToAction(nameof(Index));
 			}
-			return View(_mapper.Map<WordViewModel>(word));
+
+			return View(_mapper.Map<DetailsWordViewModel>(word));
+		}
+
+		public ActionResult BlankEditorRow()
+		{
+			return PartialView("~/Views/Shared/EditorTemplates/EditEmployeeViewModel.cshtml", new WordViewModel());
 		}
 
 		// GET: Words/Delete/5

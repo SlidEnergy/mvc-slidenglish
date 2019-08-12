@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SlidEnglish.Web
 {
-	public class WordViewModel
+	public class DetailsWordViewModel
 	{
 		public int Id { get; set; }
 
@@ -14,5 +14,7 @@ namespace SlidEnglish.Web
 		public string Association { get; set; }
 
 		public string Description { get; set; }
+
+		public List<WordViewModel> Sinonyms { get; set; }
 	}
 }

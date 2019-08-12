@@ -1,0 +1,12 @@
+﻿@model SlidEnglish.Web.WordViewModel
+
+<div class="editorRow">
+    @using (Html.BeginCollectionItem("Sinonyms"))
+    {
+        <div>
+            @Html.LabelFor(x => x.Text)
+            @Html.EditorFor(x => x.Text)
+        </div>
+        <a href="#" class="deleteRow">delete</a>
+    }
+</div>

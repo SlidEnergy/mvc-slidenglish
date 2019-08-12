@@ -1,4 +1,4 @@
-﻿@model WordViewModel
+﻿@model DetailsWordViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -17,14 +17,21 @@
                 <label asp-for="Text" class="control-label"></label>
                 <input asp-for="Text" class="form-control" />
                 <span asp-validation-for="Text" class="text-danger"></span>
-
+            </div>
+            <div class="form-group">
                 <label asp-for="Association" class="control-label"></label>
                 <input asp-for="Association" class="form-control" />
                 <span asp-validation-for="Association" class="text-danger"></span>
-
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div id="editorRows">
+                    @Html.EditorFor(x=>x.Sinonyms)
+                    @Html.ActionLink("add", "BlankEditorRow", null, null, new { Id = "addItem"})
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -39,4 +46,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $('#addItem').click(function () {
+            $.ajax({
+                url: this.href,
+                cache: false,
+                success: function (html) {
+                    $('#editorRows').append(html);
+                }
+            });
+            return false;
+        });
+    </script>
 }
