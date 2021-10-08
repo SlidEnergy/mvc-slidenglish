@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace SlidEnglish.Domain
 {
@@ -21,6 +24,12 @@ namespace SlidEnglish.Domain
 
 		[Required(AllowEmptyStrings = true)]
 		public string Association { get; set; }
+
+		public virtual ICollection<WordSinonym> Sinonyms{ get; set; }
+		public virtual ICollection<WordSinonym> SinonymOf { get; set; }
+
+		[NotMapped]
+		public ICollection<Word> AllSinonyms => Sinonyms.Select(x => x.Sinonym).Union(SinonymOf.Select(x => x.Word)).ToList();
 
 		public bool IsBelongsTo(string userId) => User.Id == userId;
 	}

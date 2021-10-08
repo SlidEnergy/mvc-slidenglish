@@ -13,6 +13,26 @@ namespace SlidEnglish.Infrastructure
 			: base(options)
 		{
 		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<WordSinonym>()
+				.HasKey(key => new { key.WordId, key.SinonymId });
+
+			modelBuilder.Entity<WordSinonym>()
+				.HasOne(e => e.Sinonym)
+				.WithMany(e => e.SinonymOf)
+				.HasForeignKey(e => e.SinonymId)
+				.OnDelete(DeleteBehavior.Restrict);
+
+			modelBuilder.Entity<WordSinonym>()
+				.HasOne(e => e.Word)
+				.WithMany(e => e.Sinonyms)
+				.HasForeignKey(e => e.WordId);
+		}
+
 		public DbSet<SlidEnglish.Domain.Word> Words { get; set; }
 	}
 }
